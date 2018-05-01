@@ -16,12 +16,12 @@ const requestAnimationFrame = (() => {
   if (typeof window === 'undefined') {
     return defaultSetTimeout;
   } else {
-    return window.requestAnimationFrame ||
+    return (window.requestAnimationFrame ||
            window.webkitRequestAnimationFrame ||
            window.mozRequestAnimationFrame ||
            window.oRequestAnimationFrame ||
            window.msRequestAnimationFrame ||
-           defaultSetTimeout;
+           defaultSetTimeout).bind(window);
   }
 })();
 
@@ -29,12 +29,12 @@ const cancelAnimationFrame = (() => {
   if (typeof window === 'undefined') {
     return defaultClearTimeout;
   } else {
-    return window.cancelAnimationFrame ||
+    return (window.cancelAnimationFrame ||
            window.webkitCancelAnimationFrame ||
            window.mozCancelAnimationFrame ||
            window.oCancelAnimationFrame ||
            window.msCancelAnimationFrame ||
-           defaultClearTimeout;
+           defaultClearTimeout).bind(window);
   }
 })();
 
